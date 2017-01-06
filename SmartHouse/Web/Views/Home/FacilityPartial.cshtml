@@ -1,0 +1,11 @@
+﻿@model DataAccess.Entities.Facilities.BaseFacility
+
+<div>
+    <h4>Components:</h4>
+    @foreach (var component in Model.Components)
+    {
+        @component.Name
+        @Html.Partial("CompenentPartial", component)
+        <hr/>
+    }
+</div>

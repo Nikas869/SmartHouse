@@ -5,13 +5,15 @@ namespace DataAccess.Entities.Components
 {
     public class StepSlider : BaseComponent, IStepable
     {
-        public int MinValue { get; }
+        public int MinValue { get; set; }
 
-        public int MaxValue { get; }
+        public int MaxValue { get; set; }
 
-        public int Value { get; private set; }
+        public int Value { get; set; }
 
-        public int Step { get; }
+        public int Step { get; set; }
+
+        public StepSlider() : base(Guid.NewGuid(), string.Empty) { }
 
         public StepSlider(Guid id, string name, int minValue, int maxValue, int step) : base(id, name)
         {

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using DataAccess.Entities.Components;
 
@@ -7,13 +9,20 @@ namespace DataAccess.Entities.Facilities
 {
     public class BaseFacility
     {
-        public Guid Id { get; private set; }
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
 
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         public List<BaseComponent> Components { get; set; } = new List<BaseComponent>(1);
 
-        protected BaseFacility(Guid id, string name)
+        public BaseFacility()
+        {
+            Id = Guid.NewGuid();
+            Name = string.Empty;
+        }
+
+        public BaseFacility(Guid id, string name)
         {
             Id = id;
             Name = name;

@@ -5,11 +5,13 @@ namespace DataAccess.Entities.Components
 {
     public class SmoothSlider : BaseComponent, ISlidable
     {
-        public int MinValue { get; }
+        public int MinValue { get; set; }
 
-        public int MaxValue { get; }
+        public int MaxValue { get; set; }
 
-        public int Value { get; private set; }
+        public int Value { get; set; }
+
+        public SmoothSlider() : base(Guid.NewGuid(), string.Empty) { }
 
         public SmoothSlider(Guid id, string name, int minValue, int maxValue) : base(id, name)
         {

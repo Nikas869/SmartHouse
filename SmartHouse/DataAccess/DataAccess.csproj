@@ -51,8 +51,8 @@
   <ItemGroup>
     <Compile Include="DatabaseContext.cs" />
     <Compile Include="DatabaseContextInitializer.cs" />
-    <Compile Include="Entities\BaseComponent.cs" />
-    <Compile Include="Entities\BaseFacility.cs" />
+    <Compile Include="Entities\Components\BaseComponent.cs" />
+    <Compile Include="Entities\Facilities\BaseFacility.cs" />
     <Compile Include="Entities\Components\Interfaces\ISlidable.cs" />
     <Compile Include="Entities\Components\Interfaces\IStepable.cs" />
     <Compile Include="Entities\Components\Interfaces\ISwitchable.cs" />
@@ -65,9 +65,7 @@
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entities\Facilities\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

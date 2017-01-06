@@ -1,0 +1,7 @@
+﻿@model DataAccess.Entities.Components.SmoothSlider
+
+<div class="progress">
+    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="@Model.Value" aria-valuemin="@Model.MinValue" aria-valuemax="@Model.MaxValue" style="width: @Model.Value%">
+        <span class="sr-only">@Model.Value</span>
+    </div>
+</div>
