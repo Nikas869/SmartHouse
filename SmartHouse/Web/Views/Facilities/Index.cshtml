@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Web.Models.Facilities.Facility>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div>
+    <h3>Facilities:</h3>
+    @foreach (var facility in Model)
+    {
+        @facility.Name
+        @Html.Partial("FacilityPartial", facility)
+        <hr />
+    }
+</div>

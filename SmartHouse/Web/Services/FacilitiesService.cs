@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using DataAccess.Entities.Facilities;
-using DataAccess.Interfaces;
-using DataAccess.Repositories;
+using Web.DataAccess.Interfaces;
+using Web.DataAccess.Repositories;
+using Web.Models.Facilities;
 
 namespace Web.Services
 {
@@ -14,9 +14,14 @@ namespace Web.Services
             unitOfWork = new UnitOfWork();
         }
 
-        public IEnumerable<BaseFacility> GetAllFacilities()
+        public IEnumerable<Facility> GetAllFacilities()
         {
-            return unitOfWork.GetRepository<BaseFacility>().Get(includeProperties: "Components");
+            return unitOfWork.GetRepository<Facility>().Get(includeProperties: "Components");
+        }
+
+        public void Create(Facility facility)
+        {
+            unitOfWork.GetRepository<Facility>().Insert(facility);
         }
     }
 }

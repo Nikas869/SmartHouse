@@ -1,0 +1,14 @@
+﻿@using Web.Models.Components
+@model BaseComponent
+
+<div>
+    <h4>@Model.Name</h4>
+    @if (Model is Switch)
+    {
+        @Html.Partial("Switch", (Switch)Model)
+    }
+    else if (Model is SmoothSlider)
+    {
+        @Html.Partial("SmoothSlider", Model)
+    }
+</div>
