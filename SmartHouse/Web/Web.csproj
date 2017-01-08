@@ -130,20 +130,20 @@
     </Compile>
     <Compile Include="DataAccess\Interfaces\IRepository.cs" />
     <Compile Include="DataAccess\Interfaces\IUnitOfWork.cs" />
-    <Compile Include="Models\Components\BaseComponent.cs" />
+    <Compile Include="Models\Components\Component.cs" />
     <Compile Include="Models\Components\Interfaces\ISlidable.cs" />
     <Compile Include="Models\Components\Interfaces\IStepable.cs" />
     <Compile Include="Models\Components\Interfaces\ISwitchable.cs" />
     <Compile Include="Models\Components\SmoothSlider.cs" />
     <Compile Include="Models\Components\StepSlider.cs" />
     <Compile Include="Models\Components\Switch.cs" />
-    <Compile Include="Models\Enums\ComponentTypeEnum.cs" />
     <Compile Include="Models\Facilities\Facility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataAccess\Repositories\Repository.cs" />
     <Compile Include="DataAccess\Repositories\UnitOfWork.cs" />
     <Compile Include="Services\ComponentService.cs" />
     <Compile Include="Services\FacilitiesService.cs" />
+    <Compile Include="ViewModels\EmptyFacilityViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\materialize.css" />
@@ -171,6 +171,7 @@
     <Content Include="fonts\roboto\Roboto-Thin.woff" />
     <Content Include="fonts\roboto\Roboto-Thin.woff2" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\init.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -201,15 +202,22 @@
     <Content Include="Views\Facilities\CompenentPartial.cshtml" />
     <Content Include="Views\Facilities\Switch.cshtml" />
     <Content Include="Views\Facilities\SmoothSlider.cshtml" />
-    <Content Include="Views\Components\SmoothSliders\Create.cshtml" />
-    <Content Include="Views\Components\SmoothSliders\Delete.cshtml" />
-    <Content Include="Views\Components\SmoothSliders\Details.cshtml" />
-    <Content Include="Views\Components\SmoothSliders\Edit.cshtml" />
-    <Content Include="Views\Components\SmoothSliders\Index.cshtml" />
+    <Content Include="Views\Components\SmoothSlider\Create.cshtml" />
+    <Content Include="Views\Components\SmoothSlider\Delete.cshtml" />
+    <Content Include="Views\Components\SmoothSlider\Details.cshtml" />
+    <Content Include="Views\Components\SmoothSlider\Edit.cshtml" />
+    <Content Include="Views\Components\SmoothSlider\Index.cshtml" />
     <Content Include="Views\Components\Create.cshtml" />
     <Content Include="Views\SmoothSliders\Create.cshtml" />
     <Content Include="Views\SmoothSliders\Details.cshtml" />
     <Content Include="Views\Facilities\Create.cshtml" />
+    <Content Include="Views\Shared\_CreateEmptyFacility.cshtml" />
+    <Content Include="Views\Facilities\Details.cshtml" />
+    <Content Include="Views\Components\StepSlider\Edit.cshtml" />
+    <Content Include="Views\Components\Switch\Edit.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Switch.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\SmoothSlider.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\StepSlider.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

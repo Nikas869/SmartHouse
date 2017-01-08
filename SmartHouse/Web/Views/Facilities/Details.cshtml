@@ -1,0 +1,10 @@
+﻿@model Web.Models.Facilities.Facility
+
+<h4>@Model.Name</h4><h6>@Model.Id.ToString()</h6>
+    
+@foreach (var component in Model.Components)
+{
+    <div class="card-panel teal">
+        @Html.EditorFor(c => component)
+    </div>
+}

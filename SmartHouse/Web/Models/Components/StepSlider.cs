@@ -3,7 +3,7 @@ using Web.Models.Components.Interfaces;
 
 namespace Web.Models.Components
 {
-    public class StepSlider : BaseComponent, IStepable
+    public class StepSlider : Component, IStepable
     {
         public StepSlider()
             : base(string.Empty)

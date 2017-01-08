@@ -1,0 +1,16 @@
+﻿@model Web.ViewModels.EmptyFacilityViewModel
+
+@using (Html.BeginForm("CreateEmpty", "Facilities", FormMethod.Post))
+{
+    <div class="modal-content">
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "")
+
+        @Html.LabelFor(model => model.Name)
+        @Html.EditorFor(model => model.Name)
+    </div>
+
+    <div class="modal-footer">
+        <input type="submit" value="Create" class="waves-effect waves-green btn-flat" />
+    </div>
+}

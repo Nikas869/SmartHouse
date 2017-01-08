@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Web.Models.Enums;
+﻿using System.Web.Mvc;
+using Web.Services;
 
 namespace Web.Controllers
 {
     public class ComponentsController : Controller
     {
-        // TODO: add displaying list of components
-        public ActionResult Index()
+        private readonly ComponentService componentService;
+
+        public ComponentsController()
         {
-            return View();
+            componentService = new ComponentService();
         }
 
         public ActionResult Create()

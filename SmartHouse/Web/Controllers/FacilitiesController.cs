@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Web.Models.Facilities;
 using Web.Services;
+using Web.ViewModels;
 
 namespace Web.Controllers
 {
     public class FacilitiesController : Controller
     {
         private readonly FacilitiesService facilitiesService;
+        private readonly ComponentService componentService;
 
         public FacilitiesController()
         {
             facilitiesService = new FacilitiesService();
+            componentService = new ComponentService();
         }
 
         // GET: Facilities
@@ -25,18 +26,22 @@ namespace Web.Controllers
             return View(facilities);
         }
 
-        public ActionResult Create()
+        [HttpPost]
+        public ActionResult CreateEmpty(EmptyFacilityViewModel emptyFacilityViewModel)
         {
-            return View();
+            var facility = facilitiesService.CreateEmpty(emptyFacilityViewModel);
+
+            return RedirectToAction("Details", facility);
         }
 
-        [HttpPost]
-        public ActionResult Create(Facility facility)
+        [HttpGet]
+        public ActionResult Details(Guid id)
         {
-            if (ModelState.IsValid)
+            var facility = facilitiesService.GetFacility(id);
+
+            if (facility == null)
             {
-                facilitiesService.Create(facility);
-                return RedirectToAction("Index");
+                return new HttpNotFoundResult();
             }
 
             return View(facility);

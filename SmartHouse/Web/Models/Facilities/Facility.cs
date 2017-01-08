@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -25,9 +25,9 @@ namespace Web.Models.Facilities
         public Guid Id { get; set; }
         public string Name { get; set; }
 
-        public List<BaseComponent> Components { get; set; } = new List<BaseComponent>();
+        public List<Component> Components { get; set; } = new List<Component>();
 
-        public void AddComponent(BaseComponent component)
+        public void AddComponent(Component component)
         {
             // TODO: make method to check existence
             // TODO: create custom exception

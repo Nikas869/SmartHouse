@@ -3,7 +3,7 @@ using Web.Models.Components.Interfaces;
 
 namespace Web.Models.Components
 {
-    public class SmoothSlider : BaseComponent, ISlidable
+    public class SmoothSlider : Component, ISlidable
     {
         public SmoothSlider()
                : base(string.Empty)

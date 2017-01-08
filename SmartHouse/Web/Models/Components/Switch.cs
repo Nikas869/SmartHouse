@@ -3,7 +3,7 @@ using Web.Models.Components.Interfaces;
 
 namespace Web.Models.Components
 {
-    public class Switch : BaseComponent, ISwitchable
+    public class Switch : Component, ISwitchable
     {
         public Switch()
             : base(string.Empty)

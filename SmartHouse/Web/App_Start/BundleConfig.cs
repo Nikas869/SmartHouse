@@ -13,7 +13,8 @@ namespace Web
                         "~/Scripts/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/bundles/materialize").Include(
-                      "~/Scripts/materialize.js"));
+                      "~/Scripts/materialize.js",
+                      "~/Scripts/init.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/materialize.css",
