@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Core.ViewModels.Components.ComponentViewModel>
+
+@foreach (var component in Model)
+{
+    <p>
+        @component.Name
+    </p>
+    @Html.DisplayFor(c => component)
+}

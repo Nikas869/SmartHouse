@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
-using Web.Services;
+﻿using System;
+using System.Web.Mvc;
+using Core.Services;
+using Core.ViewModels.Components;
 
 namespace Web.Controllers
 {
@@ -12,9 +14,56 @@ namespace Web.Controllers
             componentService = new ComponentService();
         }
 
-        public ActionResult Create()
+        public ActionResult CreateComponent(Guid redirectId)
         {
-            return View();
+            var componentTypes = componentService.GetComponentTypes();
+            ViewBag.RedirectId = redirectId;
+
+            return PartialView("_CreateComponent", componentTypes);
+        }
+
+        [Route("Switch")]
+        [HttpGet]
+        public ActionResult CreateSwitch(Guid redirectId)
+        {
+            ViewBag.RedirectId = redirectId;
+
+            return View("EditorTemplates/SwitchViewModel", new SwitchViewModel());
+        }
+
+        [Route("Switch")]
+        [HttpPost]
+        public ActionResult CreateSwitch(SwitchViewModel switchViewModel, Guid facilityId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("", switchViewModel);
+            }
+
+            componentService.CreateSwitch(switchViewModel, facilityId);
+
+            return RedirectToAction("Details", "Facilities", new { Id = facilityId });
+        }
+        
+        [HttpGet]
+        public ActionResult CreateSmoothSlider(Guid redirectId)
+        {
+            ViewBag.RedirectId = redirectId;
+
+            return View("EditorTemplates/SmoothSliderViewModel", new SmoothSliderViewModel());
+        }
+        
+        [HttpPost]
+        public ActionResult CreateSmoothSlider(SmoothSliderViewModel smoothSliderViewModel, Guid facilityId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("", smoothSliderViewModel);
+            }
+
+            componentService.CreateSmoothSlider(smoothSliderViewModel, facilityId);
+
+            return RedirectToAction("Details", "Facilities", new { Id = facilityId });
         }
     }
 }

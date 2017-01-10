@@ -1,0 +1,10 @@
+﻿@model Core.ViewModels.Components.SwitchViewModel
+
+<div class="switch">
+    <label>
+        Off
+        <input type="checkbox" @(Model.IsOn ? "checked" : null) onchange="toggleSwitch('@Model.Id')">
+        <span class="lever"></span>
+        On
+    </label>
+</div>

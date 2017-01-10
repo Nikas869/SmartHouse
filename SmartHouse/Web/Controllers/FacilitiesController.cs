@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using Web.Models.Facilities;
-using Web.Services;
-using Web.ViewModels;
+using Core.Services;
+using Core.ViewModels;
 
 namespace Web.Controllers
 {
@@ -21,7 +20,7 @@ namespace Web.Controllers
         // GET: Facilities
         public ActionResult Index()
         {
-            IEnumerable<Facility> facilities = facilitiesService.GetAllFacilities();
+            ICollection<FacilityViewModel> facilities = facilitiesService.GetAllFacilities();
 
             return View(facilities);
         }
@@ -29,9 +28,14 @@ namespace Web.Controllers
         [HttpPost]
         public ActionResult CreateEmpty(EmptyFacilityViewModel emptyFacilityViewModel)
         {
-            var facility = facilitiesService.CreateEmpty(emptyFacilityViewModel);
+            if (!ModelState.IsValid)
+            {
+                return PartialView("_CreateEmptyFacility", emptyFacilityViewModel);
+            }
 
-            return RedirectToAction("Details", facility);
+            var id = facilitiesService.CreateEmpty(emptyFacilityViewModel);
+
+            return Json(new { RedirectUrl = Url.Action("Details", new { id }) });
         }
 
         [HttpGet]
@@ -45,6 +49,13 @@ namespace Web.Controllers
             }
 
             return View(facility);
+        }
+
+        public ActionResult DeleteComponent(Guid id, Guid facilityId)
+        {
+            componentService.DeleteComponent(id);
+
+            return RedirectToAction("Details", new { id = facilityId });
         }
     }
 }

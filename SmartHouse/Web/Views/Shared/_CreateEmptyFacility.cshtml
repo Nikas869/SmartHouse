@@ -1,16 +1,41 @@
-﻿@model Web.ViewModels.EmptyFacilityViewModel
+﻿@model Core.ViewModels.EmptyFacilityViewModel
+@{
+    AjaxOptions options = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        LoadingElementId = "loader",
+        LoadingElementDuration = 0,
+        UpdateTargetId = "results",
+        OnSuccess = "createSuccess",
+    };
+}
 
-@using (Html.BeginForm("CreateEmpty", "Facilities", FormMethod.Post))
+@using (Ajax.BeginForm("CreateEmpty", "Facilities", options))
 {
-    <div class="modal-content">
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true, "")
+    <div id="results">
+        <div class="modal-content">
+            <h4>Create facility</h4>
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "")
 
-        @Html.LabelFor(model => model.Name)
-        @Html.EditorFor(model => model.Name)
-    </div>
+            <div class="input-field">
+                @Html.LabelFor(model => model.Name, new { @class = "active" })
+                @Html.EditorFor(model => model.Name, new { placeholder = Model.Name })
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
 
-    <div class="modal-footer">
-        <input type="submit" value="Create" class="waves-effect waves-green btn-flat" />
+
+        <div class="modal-footer">
+            <div id="loader" class="progress" style="display:none">
+                <div class="indeterminate"></div>
+            </div>
+
+            <button type="submit" class="waves-effect waves-green btn-flat">Create</button>
+        </div>
     </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }

@@ -1,10 +1,15 @@
-﻿@model Web.Models.Facilities.Facility
+﻿@model Core.ViewModels.FacilityViewModel
 
 <h4>@Model.Name</h4><h6>@Model.Id.ToString()</h6>
     
 @foreach (var component in Model.Components)
 {
-    <div class="card-panel teal">
-        @Html.EditorFor(c => component)
+    <div class="card-panel green lighten-5">
+        <span>@component.Name</span>
+        <span class="right">
+            @Html.ActionLink("Delete", "DeleteComponent", new { id = component.Id, facilityId = Model.Id })
+        </span>
     </div>
 }
+
+@Html.Action("CreateComponent", "Components", new { redirectId = Model.Id })

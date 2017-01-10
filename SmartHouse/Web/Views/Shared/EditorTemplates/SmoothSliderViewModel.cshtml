@@ -1,0 +1,19 @@
+﻿@model Core.ViewModels.Components.SmoothSliderViewModel
+
+@{
+    ViewBag.Title = "Create Smooth slider";
+}
+
+@using (Html.BeginForm("CreateSmoothSlider", "Components", new { facilityId = ViewBag.RedirectId }, FormMethod.Post))
+{
+    @Html.LabelFor(m => m.Name)
+    @Html.EditorFor(m => m.Name)
+
+    @Html.LabelFor(m => m.MinValue)
+    @Html.EditorFor(m => m.MinValue)
+
+    @Html.LabelFor(m => m.MaxValue)
+    @Html.EditorFor(m => m.MaxValue)
+
+    <input type="submit" value="Save" class="btn btn-default" />
+}

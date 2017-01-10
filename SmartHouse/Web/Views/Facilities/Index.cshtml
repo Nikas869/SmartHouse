@@ -1,15 +1,24 @@
-﻿@model IEnumerable<Web.Models.Facilities.Facility>
+﻿@model ICollection<Core.ViewModels.FacilityViewModel>
 
 @{
     ViewBag.Title = "Home Page";
 }
 
-<div>
-    <h3>Facilities:</h3>
+<div class="row">
     @foreach (var facility in Model)
     {
-        @facility.Name
-        @Html.Partial("FacilityPartial", facility)
-        <hr />
+        <div class="col s12 m6 l4 section">
+            <div class="card-panel z-depth-2">
+                <div class="card-content">
+                    <span class="card-title">@facility.Name</span>
+                    <span class="right">
+                        <a href="@Url.Action("Details", new { facility.Id })">
+                            <i class="material-icons">edit</i>
+                        </a>
+                    </span>
+                    @Html.Partial("_DisplayFacilityComponents", facility.Components)
+                </div>
+            </div>
+        </div>
     }
 </div>

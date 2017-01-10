@@ -1,0 +1,13 @@
+﻿@model Core.ViewModels.Components.SwitchViewModel
+ 
+@{
+    ViewBag.Title = "Create switch";
+}
+   
+@using (Html.BeginForm("CreateSwitch", "Components", new { facilityId = ViewBag.RedirectId }, FormMethod.Post))
+{
+    @Html.LabelFor(m => m.Name)
+    @Html.EditorFor(m => m.Name)
+
+    <input type="submit" value="Save" class="btn btn-default" />
+}
