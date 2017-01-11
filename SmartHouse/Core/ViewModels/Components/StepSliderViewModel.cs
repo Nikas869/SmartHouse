@@ -1,5 +1,8 @@
-﻿namespace Core.ViewModels.Components
+﻿using Core.Validators;
+
+namespace Core.ViewModels.Components
 {
+    [StepSliderViewModelValidator]
     public class StepSliderViewModel : ComponentViewModel
     {
         public int MinValue { get; set; }

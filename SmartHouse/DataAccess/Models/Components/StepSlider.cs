@@ -46,7 +46,7 @@ namespace DataAccess.Models.Components
         public void Reduce()
         {
             // TODO: create custom exception
-            if (MinValue > Value + Step)
+            if (MinValue > Value - Step)
             {
                 throw new ArgumentException();
             }

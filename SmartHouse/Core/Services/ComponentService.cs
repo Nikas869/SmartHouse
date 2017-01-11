@@ -20,26 +20,6 @@ namespace Core.Services
             this.unitOfWork = new UnitOfWork();
         }
 
-        public SmoothSlider GetSmoothSlider(Guid? id)
-        {
-            var component = unitOfWork.GetRepository<SmoothSlider>().GetById(id);
-            return component;
-        }
-
-        public ICollection<Component> GetAllUnusedComponents()
-        {
-            ICollection<Component> unusedComponents = unitOfWork.GetRepository<Component>().Get(c => c.Facility == null).ToList();
-
-            return unusedComponents;
-        }
-
-        public Component GetById(Guid componentId)
-        {
-            var component = unitOfWork.GetRepository<Component>().GetById(componentId);
-
-            return component;
-        }
-
         public List<SelectListItem> GetComponentTypes()
         {
             List<SelectListItem> listItems = new List<SelectListItem>();
@@ -56,6 +36,14 @@ namespace Core.Services
             }
 
             return listItems;
+        }
+
+        public void DeleteComponent(Guid id)
+        {
+            var component = unitOfWork.GetRepository<Component>().GetById(id);
+            unitOfWork.GetRepository<Component>().Delete(component);
+
+            unitOfWork.Save();
         }
 
         #region Create component methods
@@ -93,15 +81,27 @@ namespace Core.Services
             unitOfWork.Save();
         }
 
-        #endregion
-
-        public void DeleteComponent(Guid id)
+        public void CreateStepSlider(StepSliderViewModel stepSliderViewModel, Guid facilityId)
         {
-            var component = unitOfWork.GetRepository<Component>().GetById(id);
-            unitOfWork.GetRepository<Component>().Delete(component);
+            Guid id = Guid.NewGuid();
+            var stepSlider = new StepSlider(
+                id,
+                stepSliderViewModel.Name,
+                stepSliderViewModel.MinValue,
+                stepSliderViewModel.MaxValue,
+                stepSliderViewModel.Step);
+            unitOfWork.GetRepository<StepSlider>().Insert(stepSlider);
+
+            var facility = unitOfWork.GetRepository<Facility>().GetById(facilityId);
+            facility.AddComponent(stepSlider);
+            unitOfWork.GetRepository<Facility>().Update(facility);
 
             unitOfWork.Save();
         }
+
+        #endregion
+
+        #region Component actions
 
         public void ToggleSwitch(Guid id)
         {
@@ -111,12 +111,57 @@ namespace Core.Services
             unitOfWork.Save();
         }
 
-        public void SmoothSliderSetValue(Guid id, int value)
+        public bool SmoothSliderSetValue(Guid id, int value)
         {
             var smoothSlider = unitOfWork.GetRepository<SmoothSlider>().GetById(id);
-            smoothSlider.SetValue(value);
+            try
+            {
+                smoothSlider.SetValue(value);
+            }
+            catch (ArgumentException exception)
+            {
+                return false;
+            }
             unitOfWork.GetRepository<SmoothSlider>().Update(smoothSlider);
             unitOfWork.Save();
+
+            return true;
         }
+
+        public bool StepSliderIncreaseValue(Guid id)
+        {
+            var stepSlider = unitOfWork.GetRepository<StepSlider>().GetById(id);
+            try
+            {
+                stepSlider.Increase();
+            }
+            catch (ArgumentException exception)
+            {
+                return false;
+            }
+            unitOfWork.GetRepository<StepSlider>().Update(stepSlider);
+            unitOfWork.Save();
+
+            return true;
+        }
+
+        public bool StepSliderReduceValue(Guid id)
+        {
+            var stepSlider = unitOfWork.GetRepository<StepSlider>().GetById(id);
+            try
+            {
+                stepSlider.Reduce();
+            }
+            catch (ArgumentException exception)
+            {
+                return false;
+            }
+            unitOfWork.GetRepository<StepSlider>().Update(stepSlider);
+            unitOfWork.Save();
+
+            return true;
+        }
+
+        #endregion
     }
 }

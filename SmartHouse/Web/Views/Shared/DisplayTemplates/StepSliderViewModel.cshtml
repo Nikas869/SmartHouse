@@ -1,1 +1,7 @@
 ﻿@model Core.ViewModels.Components.StepSliderViewModel
+
+<p class="range-field">
+    <input type="number" id="@Model.Id" min="@Model.MinValue" max="@Model.MaxValue" value="@Model.Value" step="@Model.Step" />
+    <button class="btn left" onclick="stepSliderReduce('@Model.Id')">-</button>
+    <button class="btn right" onclick="stepSliderIncrease('@Model.Id')">+</button>
+</p>

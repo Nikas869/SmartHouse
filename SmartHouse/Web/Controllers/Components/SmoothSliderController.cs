@@ -15,8 +15,14 @@ namespace Web.Controllers.Components
 
         public ActionResult SetValue(Guid id, int value)
         {
-            componentService.SmoothSliderSetValue(id, value);
-            return null;
+            var result = componentService.SmoothSliderSetValue(id, value);
+
+            if (!result)
+            {
+                return new HttpStatusCodeResult(500);
+            }
+
+            return new HttpStatusCodeResult(200);
         }
     }
 }

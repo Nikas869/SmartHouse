@@ -1,5 +1,8 @@
-﻿namespace Core.ViewModels.Components
+﻿using Core.Validators;
+
+namespace Core.ViewModels.Components
 {
+    [SmoothSliderViewModelValidator]
     public class SmoothSliderViewModel : ComponentViewModel
     {
         public int MinValue { get; set; }

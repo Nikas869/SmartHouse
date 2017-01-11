@@ -1,1 +1,24 @@
 ﻿@model Core.ViewModels.Components.StepSliderViewModel
+    
+@{
+    ViewBag.Title = "Create Step slider";
+}
+
+@using (Html.BeginForm("CreateStepSlider", "Components", new { facilityId = ViewBag.RedirectId }, FormMethod.Post))
+{
+    @Html.LabelFor(m => m.Name)
+    @Html.EditorFor(m => m.Name)
+
+    @Html.LabelFor(m => m.MinValue)
+    @Html.EditorFor(m => m.MinValue)
+
+    @Html.LabelFor(m => m.MaxValue)
+    @Html.EditorFor(m => m.MaxValue)
+
+    @Html.LabelFor(m => m.Step)
+    @Html.EditorFor(m => m.Step)
+
+    @Html.ValidationSummary()
+
+    <input type="submit" value="Save" class="btn btn-default" />
+}

@@ -79,6 +79,8 @@
     <Compile Include="Services\ComponentService.cs" />
     <Compile Include="Services\FacilitiesService.cs" />
     <Compile Include="Utilities\AutoMapperConfig.cs" />
+    <Compile Include="Validators\SmoothSliderViewModelValidator.cs" />
+    <Compile Include="Validators\StepSliderViewModelValidator.cs" />
     <Compile Include="ViewModels\Components\ComponentViewModel.cs" />
     <Compile Include="ViewModels\Components\SmoothSliderViewModel.cs" />
     <Compile Include="ViewModels\Components\StepSliderViewModel.cs" />

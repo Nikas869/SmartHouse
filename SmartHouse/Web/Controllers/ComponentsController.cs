@@ -37,7 +37,7 @@ namespace Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("", switchViewModel);
+                return PartialView("EditorTemplates/SwitchViewModel", switchViewModel);
             }
 
             componentService.CreateSwitch(switchViewModel, facilityId);
@@ -58,10 +58,31 @@ namespace Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("", smoothSliderViewModel);
+                return View("EditorTemplates/SmoothSliderViewModel", smoothSliderViewModel);
             }
 
             componentService.CreateSmoothSlider(smoothSliderViewModel, facilityId);
+
+            return RedirectToAction("Details", "Facilities", new { Id = facilityId });
+        }
+
+        [HttpGet]
+        public ActionResult CreateStepSlider(Guid redirectId)
+        {
+            ViewBag.RedirectId = redirectId;
+
+            return View("EditorTemplates/StepSliderViewModel", new StepSliderViewModel());
+        }
+
+        [HttpPost]
+        public ActionResult CreateStepSlider(StepSliderViewModel stepSliderViewModel, Guid facilityId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("EditorTemplates/StepSliderViewModel", stepSliderViewModel);
+            }
+
+            componentService.CreateStepSlider(stepSliderViewModel, facilityId);
 
             return RedirectToAction("Details", "Facilities", new { Id = facilityId });
         }

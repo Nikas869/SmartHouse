@@ -1,6 +1,5 @@
 ﻿@model Core.ViewModels.Components.SmoothSliderViewModel
 
-
 <p class="range-field">
     <input type="range" id="@Model.Id" min="@Model.MinValue" max="@Model.MaxValue" value="@Model.Value" onchange="smoothSliderSetValue('@Model.Id')"/>
 </p>

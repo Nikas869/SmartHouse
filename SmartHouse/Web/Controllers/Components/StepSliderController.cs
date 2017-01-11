@@ -1,34 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Core.Services;
-using Core.ViewModels.Components;
 
 namespace Web.Controllers.Components
 {
     public class StepSliderController : Controller
     {
-        private readonly ComponentService componentService = new ComponentService();
+        private readonly ComponentService componentService;
 
-        [HttpGet]
-        public ActionResult Create()
+        public StepSliderController()
         {
-            return PartialView("EditorTemplates/SmoothSliderViewModel");
+            componentService = new ComponentService();
         }
 
-        [HttpPost]
-        public ActionResult AddToFacility(StepSliderViewModel stepSliderViewModel, Guid facilityId)
+        public ActionResult IncreaseValue(Guid id)
         {
-            if (!ModelState.IsValid)
+            var result = componentService.StepSliderIncreaseValue(id);
+
+            if (!result)
             {
-                return PartialView("EditorTemplates/StepSliderViewModel", stepSliderViewModel);
+                return new HttpStatusCodeResult(500);
             }
 
-            //componentService.CreateStepSlider(stepSliderViewModel, facilityId);
+            return new HttpStatusCodeResult(200);
+        }
 
-            return RedirectToAction("Details", "Facilities", facilityId);
+        public ActionResult ReduceValue(Guid id)
+        {
+            var result = componentService.StepSliderReduceValue(id);
+
+            if (!result)
+            {
+                return new HttpStatusCodeResult(500);
+            }
+
+            return new HttpStatusCodeResult(200);
         }
     }
 }
