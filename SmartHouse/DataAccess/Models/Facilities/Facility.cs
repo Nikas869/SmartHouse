@@ -25,7 +25,7 @@ namespace DataAccess.Models.Facilities
         public Guid Id { get; set; }
         public string Name { get; set; }
 
-        public List<Component> Components { get; set; } = new List<Component>();
+        public ICollection<Component> Components { get; set; } = new List<Component>();
 
         public void AddComponent(Component component)
         {

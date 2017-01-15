@@ -5,7 +5,6 @@ using AutoMapper;
 using Core.ViewModels;
 using DataAccess.Interfaces;
 using DataAccess.Models.Facilities;
-using DataAccess.Repositories;
 
 namespace Core.Services
 {
@@ -13,9 +12,9 @@ namespace Core.Services
     {
         private readonly IUnitOfWork unitOfWork;
 
-        public FacilitiesService()
+        public FacilitiesService(IUnitOfWork unitOfWork)
         {
-            unitOfWork = new UnitOfWork();
+            this.unitOfWork = unitOfWork;
         }
 
         public ICollection<FacilityViewModel> GetAllFacilities()

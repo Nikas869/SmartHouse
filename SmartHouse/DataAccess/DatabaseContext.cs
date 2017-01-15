@@ -6,7 +6,7 @@ namespace DataAccess
 {
     public class DatabaseContext : DbContext
     {
-        public DatabaseContext() : base("DatabaseContext")
+        public DatabaseContext(string connectionName) : base(connectionName)
         {
             Database.SetInitializer(new DatabaseContextInitializer());
         }

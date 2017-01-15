@@ -9,9 +9,9 @@ namespace DataAccess.Repositories
         private readonly DatabaseContext context;
         private bool disposed = false;
 
-        public UnitOfWork()
+        public UnitOfWork(DatabaseContext context)
         {
-            this.context = new DatabaseContext();
+            this.context = context;
         }
 
         public IRepository<TEntity> GetRepository<TEntity>() where TEntity : class

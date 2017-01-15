@@ -8,9 +8,9 @@ namespace Web.Controllers.Components
     {
         private readonly ComponentService componentService;
 
-        public SmoothSliderController()
+        public SmoothSliderController(ComponentService componentService)
         {
-            componentService = new ComponentService();
+            this.componentService = componentService;
         }
 
         public ActionResult SetValue(Guid id, int value)

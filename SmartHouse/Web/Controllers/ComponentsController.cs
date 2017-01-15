@@ -9,9 +9,9 @@ namespace Web.Controllers
     {
         private readonly ComponentService componentService;
 
-        public ComponentsController()
+        public ComponentsController(ComponentService componentService)
         {
-            componentService = new ComponentService();
+            this.componentService = componentService;
         }
 
         public ActionResult CreateComponent(Guid redirectId)

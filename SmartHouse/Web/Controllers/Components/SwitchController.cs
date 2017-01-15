@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Core.Services;
 
@@ -11,9 +8,9 @@ namespace Web.Controllers.Components
     {
         private readonly ComponentService componentService;
 
-        public SwitchController()
+        public SwitchController(ComponentService componentService)
         {
-            componentService = new ComponentService();
+            this.componentService = componentService;
         }
 
         public ActionResult ToggleSwitch(Guid id)

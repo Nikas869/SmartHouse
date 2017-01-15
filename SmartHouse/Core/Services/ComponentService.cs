@@ -15,9 +15,9 @@ namespace Core.Services
     {
         private readonly IUnitOfWork unitOfWork;
 
-        public ComponentService()
+        public ComponentService(IUnitOfWork unitOfWork)
         {
-            this.unitOfWork = new UnitOfWork();
+            this.unitOfWork = unitOfWork;
         }
 
         public List<SelectListItem> GetComponentTypes()

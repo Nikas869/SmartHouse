@@ -11,10 +11,10 @@ namespace Web.Controllers
         private readonly FacilitiesService facilitiesService;
         private readonly ComponentService componentService;
 
-        public FacilitiesController()
+        public FacilitiesController(FacilitiesService facilitiesService, ComponentService componentService)
         {
-            facilitiesService = new FacilitiesService();
-            componentService = new ComponentService();
+            this.facilitiesService = facilitiesService;
+            this.componentService = componentService;
         }
 
         // GET: Facilities

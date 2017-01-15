@@ -8,9 +8,9 @@ namespace Web.Controllers.Components
     {
         private readonly ComponentService componentService;
 
-        public StepSliderController()
+        public StepSliderController(ComponentService componentService)
         {
-            componentService = new ComponentService();
+            this.componentService = componentService;
         }
 
         public ActionResult IncreaseValue(Guid id)
